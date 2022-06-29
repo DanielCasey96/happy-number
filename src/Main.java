@@ -1,10 +1,11 @@
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class Main {
 
     public static void main(String[] args) {
         Main main = new Main();
-        main.isHappy(163);
+        main.isHappy(2);
     }
 
     public boolean isHappy(int n) {
@@ -17,7 +18,8 @@ public class Main {
         int cal;
         int square;
         int sum = 0;
-        char[] infinityCheckerIn;
+
+        HashSet<Integer> infinityCheck=new HashSet();
 
         while (true) {
             for (i = 0; i < inputArray.length; i++) {
@@ -30,14 +32,13 @@ public class Main {
                     return true;
                 }
             }
-            infinityCheckerIn = inputArray;
             input = String.valueOf(sum);
             inputArray = input.toCharArray();
-            sum = 0;
-            if(Arrays.equals(infinityCheckerIn, inputArray)) {
-                System.out.println("false");
+            if(infinityCheck.contains(sum)) {
                 return false;
             }
+            infinityCheck.add(sum);
+            sum = 0;
         }
     }
 }
